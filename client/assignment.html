@@ -1,0 +1,40 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Registration</title>
+    <script src="https://www.gstatic.com/firebasejs/4.6.2/firebase.js"></script>
+    <script src="https://code.jquery.com/jquery-3.1.0.min.js"></script>
+    
+  </head>
+  <body>
+    <h3>Registration information</h3>
+    <p>User Name:<input type="text" name="username" id="username" required></p>
+    <p>Name:<input type="text" name="name" id="name" required></p>
+    <p>Email:<input type="email" name="email" id="email" required></p>
+    <p>Password:<input type="password" name="password" id="password" required></p>
+    <p>Age:<input type="number" name="age" id="age" min="1" max="90" required></p>
+    <p>
+      <input type="submit" value="Add" id="addUser">
+      <input type="button" value="Clear" id="clear">
+    </p>
+  
+
+  <h3>Current Users(Sort by Name)</h3>
+  <table border="1" width="50%" id="sortByName">
+    <tr>
+      <td>User Name</td><td>Name</td><td>Email</td><td>Age</td>
+    </tr>
+  </table>
+  
+  <h3>Current Users(Sort by Age)</h3>
+  <table border="1" width="50%" id="sortByAge">
+    <tr>
+      <td>User Name</td><td>Name</td><td>Email</td><td>Age</td>
+    </tr>
+  </table>
+  <p>
+    <input type="button" value="Avg Age" id="avgAge">
+  </p>
+  <script src="js/register.js"></script>
+  </body>
+</html>
