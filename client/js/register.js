@@ -1,33 +1,37 @@
 var userNum = 0;
 var allAge = 0;
 
-// Initialize Firebase
-var config = {
-    apiKey: "AIzaSyD6lN6dslo-MsBkuxZq8_051tFYQ5LkZto",
-    authDomain: "test-c4ac2.firebaseapp.com",
-    databaseURL: "https://test-c4ac2.firebaseio.com/",
-    storageBucket: "test-c4ac2.appspot.com",
-};
-firebase.initializeApp(config);
 
-var dbRef= firebase.database().ref().child("users")
+  // Initialize Firebase 
+  var config = {
+    apiKey: "AIzaSyDliGmrsDx2h-jEVh841CGzKxxAnvAQaPk",
+    authDomain: "assignment1-8525e.firebaseapp.com",
+    databaseURL: "https://assignment1-8525e.firebaseio.com",
+    projectId: "assignment1-8525e",
+    storageBucket: "assignment1-8525e.appspot.com",
+    messagingSenderId: "22249652018"
+  };
+  firebase.initializeApp(config);
+
+
+var dbRef= firebase.database().ref().child("registers")
 
 dbRef.on('value', function(snap) {
-    users = snap.val()
-    userNum = users.length;
-    for (var i = 0; i < users.length; i++) {
-        allAge += users[i].age;
+    var registers = snap.val()
+    userNum = registers.length;
+    for (var i = 0; i < registers.length; i++) {
+        allAge += registers[i].age;
     }
 });
 
 // Print data to table 1
-var dbRefName= firebase.database().ref().child("users").orderByChild("name");
+var dbRefName= firebase.database().ref().child("registers").orderByChild("name");
 dbRefName.on("child_added", snap => {
     $("#sortByName").append("<tr><td>" + snap.child("username").val() + "</td><td>" + snap.child("name").val() + "</td><td>" + snap.child("email").val() + "</td><td>" + snap.child("age").val() + "</td></tr>");
 });
 
 // Print data to table 2
-var dbRefAge= firebase.database().ref().child("users").orderByChild("age");
+var dbRefAge= firebase.database().ref().child("registers").orderByChild("age");
 dbRefAge.on("child_added", snap => {
     $("#sortByAge").append("<tr><td>" + snap.child("username").val() + "</td><td>" + snap.child("name").val() + "</td><td>" + snap.child("email").val() + "</td><td>" + snap.child("age").val() + "</td></tr>");
 });
@@ -47,8 +51,7 @@ document.getElementById('addUser').onclick = function(){
     var message;
     if (validateUsername() && validateName() 
         && validateEmail() && validatePwd() && validateAge()) {
-        firebase.database().ref('users/' + userNum).set({
-            userid: userNum,
+        firebase.database().ref('registers/' + userNum).set({
             username: username,
             name: name,
             email: email,
@@ -62,6 +65,7 @@ document.getElementById('addUser').onclick = function(){
     alert(message);
 };
 
+//Clear all input
 document.getElementById('clear').onclick = function(){
     document.getElementById('username').value = "";
     document.getElementById('name').value = "";
